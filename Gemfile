@@ -15,6 +15,8 @@ gem 'puma', '~> 3.7'
 
 gem 'graphql'
 gem "graphiql-rails"
+gem 'sass-rails'
+gem 'uglifier'
 gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
 
 
@@ -34,8 +36,6 @@ gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'sass-rails'
-  gem 'uglifier'
 end
 
 group :development do
