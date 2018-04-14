@@ -13,16 +13,16 @@
 #   end
 # end
 
-10.times do
+
   user = User.create(name: Faker::GameOfThrones.character)
   rand(1..10).times do
     post = Post.create(title: Faker::Lorem.sentences, content: Faker::Lorem.paragraph)
-    rand(500..1000).times do
+    rand(1..30).times do
       post.comments << Comment.create(comment: Faker::Lorem.paragraph)
     end
     user.posts << post
   end
 
-end
+
 
 
