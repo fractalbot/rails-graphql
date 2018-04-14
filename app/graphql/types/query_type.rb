@@ -16,22 +16,5 @@ Types::QueryType = GraphQL::ObjectType.define do
     }
   end
 
-  field :login, types.String do
-    description "User login"
-    argument :email, types.String
-    argument :password, types.String
-    resolve -> (_, args, _){
-      user = User.where(email: args[:email]).first
-      user.sessions.create.key if user.try(:authenticate, args[:password])
-    }
-  end
-
-  field :current_user, Types::UserType do
-    resolve -> (_, _, ctx){
-      ctx[:current_user]
-    }
-  end
-
-
 end
 

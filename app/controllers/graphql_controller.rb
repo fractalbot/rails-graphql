@@ -1,20 +1,12 @@
 class GraphqlController < ApplicationController
 
-  before_action do 
-    unless @session = Session.where(key: request.headers['Authorization']).first
-      puts "########################################"
-      head(:unauthorized)
-      false
-    end
-  end
-
   def execute
     variables = ensure_hash(params[:variables])
     query = params[:query]
     operation_name = params[:operationName]
     context = {
       # Query context goes here, for example:
-      current_user: @session.user,
+      # current_user: @session.user,
     }
     result = BookshelfSchema.execute(query, variables: variables, context: context, operation_name: operation_name)
     render json: result
