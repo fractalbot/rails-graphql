@@ -1,7 +1,8 @@
 class User < ApplicationRecord
-  validates :name, presence: true
   has_many :posts
-
+  has_many :sessions 
   has_secure_password
-  has_many :sessions
+  
+  validates :name, presence: true
+   
 end
