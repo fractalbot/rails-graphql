@@ -1,5 +1,5 @@
 class Resolvers::SignInUser < GraphQL::Function
-  argument :email, !Types::AuthProviderEmailInput
+  argument :email, !Inputs::AuthProviderEmailInput
 
   # defines inline return type for the mutation
   type do
