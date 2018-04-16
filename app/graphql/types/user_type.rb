@@ -1,9 +1,3 @@
-Types::UserInputType = GraphQL::InputObjectType.define do
-  name "UserInputType"
-  description "Properties to creating or updating a User"
-  argument :name, !types.String
-end
-
 Types::UserType = GraphQL::ObjectType.define do
   name "UserType"
 
