@@ -15,29 +15,6 @@ ActiveRecord::Schema.define(version: 20180416183354) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "author_books", force: :cascade do |t|
-    t.bigint "author_id"
-    t.bigint "book_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["author_id"], name: "index_author_books_on_author_id"
-    t.index ["book_id"], name: "index_author_books_on_book_id"
-  end
-
-  create_table "authors", force: :cascade do |t|
-    t.string "first_name"
-    t.integer "age"
-    t.boolean "is_alive"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "books", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "comments", force: :cascade do |t|
     t.text "comment"
     t.bigint "post_id"
@@ -63,8 +40,6 @@ ActiveRecord::Schema.define(version: 20180416183354) do
     t.string "password_digest"
   end
 
-  add_foreign_key "author_books", "authors"
-  add_foreign_key "author_books", "books"
   add_foreign_key "comments", "posts"
   add_foreign_key "posts", "users"
 end

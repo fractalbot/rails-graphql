@@ -12,7 +12,7 @@ development:
   #timeout: 5000
   adapter: postgresql
   encoding: unicode
-  database: blogfractal
+  database: graphtal
   host: localhost
   pool: 5
   username: gleydson
@@ -50,7 +50,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: blogfractal
+  database: graphtaltest
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
