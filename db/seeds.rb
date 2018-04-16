@@ -14,14 +14,16 @@
 # end
 
 
-# user = User.create(name: 'Gleydson Tavares', email: "gleydson.tavares@fractaltecnologia.com.br", password:"12345", password_confirmation:"12345", is_admin: true)
-# rand(1..10).times do
-#   post = Post.create(title: Faker::Lorem.sentences, content: Faker::Lorem.paragraph)
-#   rand(1..30).times do
-#     post.comments << Comment.create(comment: Faker::Lorem.paragraph)
-#   end
-#   user.posts << post
-# end
+2.times do
+  User.create(name: Faker::GameOfThrones.character, email: Faker::Internet.email, password:"12345", password_confirmation:"12345")
+end
+
+rand(1..10).times do
+  post = Post.create(title: Faker::Lorem.sentence, content: Faker::Lorem.paragraph, user_id: User.all.sample)
+  rand(10..30).times do
+    post.comments << Comment.create(comment: Faker::Lorem.paragraph)
+  end
+end
 
 
 
