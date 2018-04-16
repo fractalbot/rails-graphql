@@ -5,7 +5,6 @@ class GraphqlController < ApplicationController
     query = params[:query]
     operation_name = params[:operationName]
     context = {
-      # Query context goes here, for example:
       session: session,
       current_user: current_user,
     }
@@ -15,12 +14,14 @@ class GraphqlController < ApplicationController
 
   private
 
-  # gets current user from token stored in session
+  # gets current user from token passed in header
   def current_user
-    return unless session[:token]
+    return nil if request.headers['x-token'].blank?
+    token = request.headers['x-token'].split(' ').last
+    return nil if token.blank?
 
     crypt = ActiveSupport::MessageEncryptor.new(Rails.application.secrets.secret_key_base.byteslice(0..31))
-    token = crypt.decrypt_and_verify session[:token]
+    token = crypt.decrypt_and_verify token
     user_id = token.gsub('user-id:', '').to_i
     User.find_by id: user_id
   rescue ActiveSupport::MessageVerifier::InvalidSignature
