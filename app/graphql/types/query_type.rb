@@ -5,7 +5,7 @@ Types::QueryType = GraphQL::ObjectType.define do
     description "User by"
     argument :id, !types.ID
     resolve -> (root, args, ctx) {
-      # raise GraphQL::ExecutionError.new("Authentication required") if ctx[:current_user].blank?
+      raise GraphQL::ExecutionError.new("Authentication required") if ctx[:current_user].blank?
       User.find(args[:id])
     }
   end
@@ -15,6 +15,14 @@ Types::QueryType = GraphQL::ObjectType.define do
     resolve -> (root, args, ctx){
       raise GraphQL::ExecutionError.new("Authentication required") if ctx[:current_user].blank?
       User.all
+    }
+  end
+
+  field :get_posts, types[Types::PostType] do
+    description "All posts"
+    resolve -> (root, args, ctx){
+      raise GraphQL::ExecutionError.new("Authentication required") if ctx[:current_user].blank?
+      Post.where(user_id: ctx[:current_user].id)
     }
   end
 
