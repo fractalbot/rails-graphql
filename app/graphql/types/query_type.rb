@@ -12,6 +12,9 @@ Types::QueryType = GraphQL::ObjectType.define do
   field :all_users, types[Types::UserType] do
     description "All users"
     resolve -> (root, args, ctx){
+      if ctx[:current_user].blank?
+        raise GraphQL::ExecutionError.new("Authentication required")
+      end
       User.all
     }
   end
