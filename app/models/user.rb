@@ -4,5 +4,7 @@ class User < ApplicationRecord
   
   validates :name, presence: true
   validates :email, presence: true, uniqueness: true
+
+  enum access_level: [:user, :admin]
    
 end
