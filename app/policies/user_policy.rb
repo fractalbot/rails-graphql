@@ -1,6 +1,10 @@
-class PostPolicy < ApplicationPolicy
+class UserPolicy < ApplicationPolicy
 
-  def get_posts?
+  def all_users?
+    user.user? || user.admin?
+  end
+
+  def user?
     user.user? || user.admin?
   end
 

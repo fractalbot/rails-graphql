@@ -19,6 +19,8 @@ gem 'sass-rails'
 gem 'uglifier'
 gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
 gem 'pundit'
+gem 'graphql-guard'
+
 
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
