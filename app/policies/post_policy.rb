@@ -1,7 +1,7 @@
 class PostPolicy < ApplicationPolicy
 
   def get_posts?
-    user.user? || user.admin?
+    user.admin?
   end
 
   class Scope < Scope

@@ -1,11 +1,11 @@
 class UserPolicy < ApplicationPolicy
 
   def all_users?
-    user.user? || user.admin?
+    user.admin?
   end
 
   def user?
-    user.user? || user.admin?
+    user.admin?
   end
 
   class Scope < Scope
