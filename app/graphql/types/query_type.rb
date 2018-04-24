@@ -1,3 +1,4 @@
+include PostsHelper
 Types::QueryType = GraphQL::ObjectType.define do
   name "Query"
   
@@ -24,14 +25,14 @@ Types::QueryType = GraphQL::ObjectType.define do
     }
   end
 
-  field :get_posts, types[Types::PostType] do
-    description "All posts"
+  connection :get_posts, Types::PostType.connection_type do
+    description "All books"
     guard ->(root, args, ctx) { 
       raise GraphQL::ExecutionError.new("Authentication required") if ctx[:current_user].blank?
       PostPolicy.new(ctx[:current_user], nil).get_posts?
     }
     resolve -> (root, args, ctx){
-      Post.where(user_id: ctx[:current_user].id)
+      fetch_posts
     }
   end
 

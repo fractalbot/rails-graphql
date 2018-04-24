@@ -20,6 +20,11 @@ gem 'uglifier'
 gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
 gem 'pundit'
 gem 'graphql-guard'
+# Use redis
+gem "redis"
+gem "redis-namespace"
+gem "redis-rails"
+gem "redis-rack-cache"
 
 
 
