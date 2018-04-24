@@ -1,1 +1,1 @@
-endpoint: http://graphtal.herokuapp.com/graphql
+endpoint: POST http://localhost:3000/graphql
